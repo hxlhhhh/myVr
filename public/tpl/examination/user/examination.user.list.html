@@ -1,0 +1,118 @@
+<div class="container-fluid"  style="margin-top: 50px">
+    <!-- 签到 -->
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-1 offset-md-11">
+            <button ng-show="isSignin == '0'" class="btn btn-primary" ng-click="userSignin()" type="button">签到</button>
+            <button ng-show="isSignin == '1'" ng-disabled="true" class="btn btn-primary" type="button">已签到</button>
+        </div>
+     </div>
+    <!-- 个人资料 -->
+    <div class="row" style="margin-top: 30px">
+         <fieldset style="width: 100%;
+         text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+         padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+             <legend style="width: 100px;font-size: 20px;font-weight: bolder">个人信息</legend>
+             <table>
+                <tr>
+                    <td>姓名:</td><td>{{user.userName}}</td>
+                </tr>
+                <tr>
+                    <td>年龄:</td><td>22</td>
+                </tr>
+                <tr>
+                    <td>性别:</td><td>男</td>
+                </tr>
+                <tr>
+                    <td>手机号:</td><td>{{user.phone}}</td>
+                </tr>
+                <tr>
+                    <td>职位:</td><td>初级消防员</td>
+                </tr>
+                <tr>
+                    <td>身份证号:</td><td>4115261872309819954</td>
+                </tr>
+                <tr>
+                    <td>部门:</td><td>{{user.departId != null?user.departId['name']:"未知"}}</td>
+                </tr>
+             </table>
+         </fieldset>
+     </div>
+    <!-- 我的预约 -->
+    <div class="row" style="margin-top: 30px">
+             <fieldset style="width: 100%;
+             text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+             padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+                 <legend style="width: 100px;font-size: 20px;font-weight: bolder">我的考试</legend>
+                 <div ng-show="isOrderExaminations.length == 0"style="height:200px;text-align: center;">
+                    <span style="line-height: 200px;font-weight: bolder;font-size: 20px;">
+                    暂未有考试可以参加
+                    </span>
+                 </div>
+                 <div ng-show="isOrderExaminations.length > 0" class="card col-md-3 col-sm-4" style="height:200px;align-items: center;border-left: 5px #1A8CFE solid;
+                 float: left;border-radius: 8px;min-width: 250px;max-width: 280px;margin-bottom: 20px;
+                 margin-right: 10px;" ng-repeat="x in isOrderExaminations">
+                     <div class="card-header" style=" background-color:white;border:none;font-weight: bolder;">
+                       <span>{{ x.name }}</span>
+                     </div>
+                     <div class="card-body">
+                         <div>
+                             <span>开始时间</span><span>{{ x.startDate }}</span>
+                         </div>
+                         <div style="margin-top: 8px">
+                            <span>结束时间</span><span>{{ x.endDate }}</span>
+                          </div>
+                     </div>
+                     <div class="card-footer" style=" background-color:white;">
+                         <button class="btn btn-primary" ng-show="x.status == '1'" ng-click="cannelOrderExam(x)" type="button">取消预约</button>
+                         <button class="btn btn-primary" ng-click="startExam(x)" type="button">开始</button>
+                     </div>
+                   </div>
+             </fieldset>
+         </div>
+    <!-- 我的成绩 -->
+    <div class="row" style="margin-top: 30px">
+        <fieldset style="width: 100%;
+        text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+        padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+            <legend style="width: 100px;font-size: 20px;font-weight: bolder">我的成绩</legend>
+            <div ng-show="isDoneExaminations.length == 0" style="height:200px;text-align: center;">
+                <span style="line-height: 200px;font-weight: bolder;font-size: 20px;">
+                    暂未有考试成绩
+                </span>
+            </div>
+            <div ng-show="isDoneExaminations.length > 0" class="card col-md-3 col-sm-4" style="height:200px;align-items: center;border-left: 5px #1A8CFE solid;
+            float: left;border-radius: 8px;min-width: 250px;max-width: 280px;margin-bottom: 20px;
+            margin-right: 10px;" ng-repeat="x in isDoneExaminations">
+                <div class="card-header" style=" background-color:white;border:none;font-weight: bolder;">
+                  <span>{{ x.name }}</span>
+                </div>
+                <div class="card-body">
+                     <div style="margin-top: 8px">
+                       <span>成绩:</span><span style="color: red;font-size: 20px;font-weight: bolder;">{{ x.score }}</span>
+                     </div>
+                </div>
+              </div>
+        </fieldset>
+    </div>
+
+    <div  style="margin-top: 30px">
+        <fieldset style="width: 100%;
+         text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+         padding-top: 8px;padding-left: 15px;padding-right: 15px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+            <legend style="width: 100px;font-size: 20px;font-weight: bolder">我的消息</legend>
+            <div >
+                <div>
+                    <h5 style="display: inline">lisi</h5>
+                    <p style="text-align:right;display: inline">2019-01-01 20:01:00</p>
+                    <a href="url" style="float:right;display: inline">回复</a>
+                </div>
+                <br>
+                <div>
+                    <p>
+                        回复的消息
+                    </p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+
+
+<div class="container-fluid"  style="margin-top: 50px">
+     <div class="row" style="margin-top: 30px">
+         <fieldset style="width: 100%;
+         text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+         padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+             <legend style="width: 25%;font-size: 20px;font-weight: bolder">已经预约</legend>
+             <div ng-show="isOrderExaminations.length == 0" style="height:200px;text-align: center;">
+                 <span style="line-height: 200px;font-weight: bolder;font-size: 20px;">
+                     暂未有已经预约的考试
+                 </span>
+             </div>
+             <div ng-show="isOrderExaminations.length > 0" class="card col-md-3 col-sm-4" style="height:200px;align-items: center;border-left: 5px #1A8CFE solid;
+             float: left;border-radius: 8px;min-width: 250px;max-width: 280px;margin-bottom: 20px;
+             margin-right: 10px;" ng-repeat="x in isOrderExaminations">
+                 <div class="card-header" style=" background-color:white;border:none;font-weight: bolder;">
+                   <span>{{ x.name }}</span>
+                 </div>
+                 <div class="card-body">
+                     <div>
+                         <span>开始时间</span><span>{{ x.startDate }}</span>
+                     </div>
+                     <div style="margin-top: 8px">
+                        <span>结束时间</span><span>{{ x.endDate }}</span>
+                      </div>
+                 </div>
+                 <div class="card-footer" style=" background-color:white;">
+                     <button class="btn btn-primary" ng-show="x.status == '0'" ng-click="orderExam(x)" type="button">预约</button>
+                     <button class="btn btn-primary" ng-show="x.status == '1'" ng-click="cannelOrderExam(x)" type="button">取消预约</button>
+                     <button class="btn btn-primary" ng-click="startExam(x)" type="button">开始</button>
+                 </div>
+               </div>
+         </fieldset>
+     </div>
+
+
+
+
+    <div class="row" style="margin-top: 30px">
+         <fieldset style="width: 100%;
+         text-align: left;border: 1px solid #4da6ff;border-radius: 15px;
+         padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px" class="col-md-10 offset-md-1">
+             <legend style="width: 25%;font-size: 20px;font-weight: bolder">未预约</legend>
+             <div ng-show="notOrderExaminations.length == 0" style="height:200px;text-align: center;">
+                  <span style="line-height: 200px;font-weight: bolder;font-size: 20px;">
+                      暂未有考试可以预约
+                  </span>
+              </div>
+             <div ng-show="notOrderExaminations.length > 0" class="card col-md-3 col-sm-4" style="height:200px;align-items: center;border-left: 5px #1A8CFE solid;
+             float: left;border-radius: 8px;min-width: 250px;max-width: 280px;margin-bottom: 20px;
+             margin-right: 10px;" ng-repeat="x in notOrderExaminations">
+                 <div class="card-header" style=" background-color:white;border:none;font-weight: bolder;">
+                   <span>{{ x.name }}</span>
+                 </div>
+                 <div class="card-body">
+                     <div>
+                         <span>开始时间</span><span>{{ x.startDate }}</span>
+                     </div>
+                     <div style="margin-top: 8px">
+                        <span>结束时间</span><span>{{ x.endDate }}</span>
+                      </div>
+                 </div>
+                 <div class="card-footer" style=" background-color:white;">
+                     <button class="btn btn-primary" ng-show="x.status == '0'" ng-click="orderExam(x)" type="button">预约</button>
+                     <button class="btn btn-primary" ng-show="x.status == '1'" ng-click="cannelOrderExam(x)" type="button">取消预约</button>
+                     <!-- <button class="btn btn-primary" ng-click="startExam(x)" type="button">开始</button>-->
+                 </div>
+               </div>
+         </fieldset>
+     </div>
+<!--
+    <div>
+        <h6>未考试过的实训</h6>
+    </div>
+    <div class="row">
+      <div class="card col-md-3" style="align-items: center;border-left: 5px #1A8CFE solid; margin-right: 10px;" ng-repeat="x in notDoneExaminations">
+        <div class="card-header" style=" background-color:white;border:none">
+          <span>{{ x.name }}</span>
+        </div>
+        <div class="card-body">
+            <div>
+                <span>开始时间</span><span>{{ x.startDate }}</span>
+            </div>
+            <div style="margin-top: 8px">
+               <span>结束时间</span><span>{{ x.endDate }}</span>
+             </div>
+        </div>
+        <div class="card-footer" style=" background-color:white;">
+            <button class="btn btn-primary" ng-click="orderExam()" type="button">预约</button>
+            <button class="btn btn-primary" ng-click="startExam(x)" type="button">开始</button>
+        </div>
+      </div>
+    </div>
+-->
+</div>

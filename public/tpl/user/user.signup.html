@@ -1,0 +1,44 @@
+<div style="margin-top: 300px;" class="container" >
+<div>
+<form name="registForm" ng-submit="vm.signup()" >
+        <div class="form-group row" ng-class="{'has-error':registForm.userName.$dirty && registForm.userName.$invalid}">
+          <label for="username" class="col-sm-1 col-md-1 col-form-label">用户名</label>
+          <div class="col-sm-6 col-md-6">
+            <input type="text" name="username" ng-required="true" ng-model="vm.user.userName"
+                         class="form-control" placeholder="请输入用户名"  ng-maxlength="10" >
+          </div>
+          <div ng-show="registForm.username.$error.maxlength" class="col-form-label" style="color: red;">
+              用户名不能超过10位
+           </div>
+        </div>
+
+
+
+        <div class="form-group row" style="margin-top: 20px" ng-class="{'has-error':registForm.password.$dirty && registForm.password.$invalid}">
+            <label class="col-sm-1 col-md-1 col-form-label">密码</label>
+            <div class="col-sm-6 col-md-6">
+               <input type="text" name="password" ng-required="true" ng-model="vm.user.password"
+                class="form-control" placeholder="请输入用户名"  ng-maxlength="10">
+           </div>
+            <div ng-show="registForm.password.$error.maxlength" class="col-form-label" style="color: red;">
+              密码不能超过10位
+           </div>
+        </div>
+        <div class="form-group row" ng-class="{'has-error':registForm.phone.$dirty && registForm.phone.$invalid}">
+            <label class="col-sm-1  col-md-1 col-form-label">手机号</label>
+            <div class="col-sm-6 col-md-6">
+               <input type="text" name="phone" ng-required="true" ng-model="vm.user.phone"
+                class="form-control" placeholder="请输入手机号"  ng-maxlength="10">
+           </div>
+           <div ng-show="registForm.phone.$error.maxlength" class="col-form-label">
+               请输入正确的手机号
+           </div>
+        </div>
+        <div class="form-group col-sm-10" style="padding-left: 150px;" >
+          <button type="submit" class="btn btn-primary">Sign up</button>&nbsp; or&nbsp;
+          <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
+        </div>
+  </form>
+</div>
+
+</div>

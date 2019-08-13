@@ -1,0 +1,41 @@
+<!--admin list -->
+
+<ul class="nav" >
+    <!-- <li class="hidden-folded padder m-t m-b-sm text-muted text-xs"></li> -->
+<!-- ng-class="{active:$state.includes(parentMenu.url)}" -->
+    <li ng-repeat="parentMenu in vm.menus" ng-class="{active:$state.includes(parentMenu.url)}">
+        <a href class="auto" ng-if="parentMenu.childList.length > 0" >
+            <!--右变为下-->
+            <span class="pull-right text-muted" >
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
+            <!--/右变为下-->
+            <i class="{{ parentMenu.icon }}"  ></i>
+            <span  > {{ parentMenu.name }} </span>
+        </a>
+
+         <a ui-sref="{{ parentMenu.url }}"  ng-if="parentMenu.childList.length == 0">
+           <i class="{{ parentMenu.icon }}"></i>
+           <span class="font-bold">{{ parentMenu.name }}</span>
+         </a>
+
+        <ul class="nav nav-sub dk" >
+            <li class="nav-sub-header">
+                <a ui-sref="app.examination.list">
+                    <span>{{ parentMenu.name }}</span>
+                </a>
+            </li>
+            <li ui-sref-active="active" ng-repeat="childMenu in parentMenu.childList">
+                <a ui-sref="{{ childMenu.url }}">
+                    <span>{{ childMenu.name }}</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <div class="line dk hidden-folded"></div>
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+
+    </li>
+</ul>
+<!-- /admin  list -->

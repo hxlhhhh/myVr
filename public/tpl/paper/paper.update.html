@@ -1,0 +1,105 @@
+<div class="container" style="margin-top: 80px;text-align: -webkit-center;" >
+    <h2 class="col-md-10" ng-bind="titleContent"></h2>
+    <div class="col-md-10" style="margin-top: 20px">
+        <form class="form-horizontal" role="exercise">
+            <fieldset disabled ng-show="false">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-sm-3 col-form-label" for="paper._id">ID</label>
+                    <div class="col-sm-9 col-md-9">
+                        <input type="text" class="form-control" ng-model="paper._id" id="paper._id"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset id="fieldGroup">
+                <div class="form-group row">
+                    <label for="paper.name" class="col-sm-3 col-md-3 col-form-label">试卷名称(*)</label>
+                    <div class="col-sm-9 col-md-9">
+                        <input type="text" ng-model="paper.name" class="form-control" id="paper.name" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="paper.sumScore" class="col-md-3 col-form-label">总分(*)</label>
+                    <div class="col-sm-9">
+                        <input type="text" ng-model="paper.sumScore" class="form-control" id="exercise.weight" name="paper.sumScore"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="paper.classification" class="col-md-3 col-form-label">分类(*)</label>
+                    <div class="col-sm-9">
+                        <input type="text" ng-model="paper.classification" class="form-control" id="paper.classification" name="paper.classification"/>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <table style="border: 1px dashed #ccc;font-size: 20px;" class="col-md-10">
+                    <tbody>
+                    <tr style="background-color: #ccc">
+                        <th width="25%" colspan="1" align="center">固定题</th>
+                        <th width="25%" colspan="1" align="center">题目个数</th>
+                    </tr>
+                    <tr>
+                        <td width="25%">
+                           <span style="cursor:pointer;" ng-click="showExcExer();">固定选题</span>
+                        </td>
+                        <td width="10%"><span style="cursor:pointer;" ng-click="showIncExer();">{{ selectExersLength}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button ng-show="isUpdate == '1'" id="btnUpdate" type="button" ng-click="update()" class="btn btn-secondary">更新</button>
+                    <button ng-show="isUpdate == '0'" id="btnAdd" type="button" ng-click="add()" class="btn btn-secondary">添加</button>
+                    <button id="btnReturn" type="button" ng-click="back()" class="btn btn-secondary">返回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal fade col-md-8 offset-md-2" style="margin-top: 20%;" id="excExerModal" tabindex="-1" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="edit_modal_title" class="modal-title font_normal" style="margin: auto">添加习题</h4>
+            </div>
+             <table id="table" style="width: 800px;"></table>
+             <div class="modal-footer" style="margin: auto;">
+                 <button type="button" ng-click="saveSelectExer();" class="btn  btn-primary" data-dismiss="modal">保存</button>
+             </div>
+         </div>
+         <div class="modal-dialog" role="document">
+
+         </div>
+    </div>
+    <div class="modal fade col-md-8 offset-md-2" style="margin-top: 20%;height: 800px;" id="incExerModal" tabindex="-1" role="dialog">
+             <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 id="edit_modal_title" class="modal-title font_normal" style="margin: auto">查看习题</h4>
+                    </div>
+                     <table id="incTable" style="width: 600px;" class="table table-striped">
+                        <thead>
+                           <tr>
+                             <th style="width: 300px">题目</th>
+                             <th>分值</th>
+                             <th>选择题</th>
+                             <th>分类</th>
+                             <th>操作</th>
+                            </tr>
+                        </thead>
+                          <tr ng-repeat="exer in selectExers">
+                            <td style="width: 300px">{{ exer.tittle }}</td>
+                            <td>{{ exer.weight }}</td>
+                            <td>{{ exer.type == "0"?"选择题":"未知" }}</td>
+                            <td>{{ exer.categoryId['name'] }}</td>
+                            <td><a href="javaScript:;" ng-click="deleteSel($index);">删除</a></td>
+                          </tr>
+                     </table>
+                     <div class="modal-footer" style="margin: auto;">
+                         <button type="button" ng-click="saveIncExer();" class="btn  btn-primary" data-dismiss="modal">关闭</button>
+                     </div>
+                 </div>
+             <div  class="modal-dialog" role="document">
+             </div>
+        </div>
+</div>

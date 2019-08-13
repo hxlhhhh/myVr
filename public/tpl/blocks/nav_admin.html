@@ -1,0 +1,237 @@
+<!--admin list -->
+
+<ul class="nav" >
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    </li>
+    <!--<div class="line dk hidden-folded"></div>-->
+    <!--考试管理-->
+    <li ng-class="{active:$state.includes('app.examination')}">
+        <a href class="auto">
+            <!--右变为下-->
+            <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <!--/右变为下-->
+            <i class="glyphicon glyphicon-briefcase"></i>
+            <span>考试管理中心</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>考试管理中心</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.examination.list">
+                    <span>考试管理</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.examination.exerciseList">
+                    <span>试题管理</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.examination.categoryList">
+                    <span>试题类属</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.examination.paperList">
+                    <span>试卷管理</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.examination.scoreList">
+                    <span>成绩管理</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--/考试管理-->
+
+
+    <!--用户管理-->
+    <li ng-class="{active:$state.includes('app.yonghu')}">
+        <a href class="auto">
+            <!--右变为下-->
+            <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <!--/右变为下-->
+            <i class="glyphicon icon-user-follow"></i>
+            <span>用户管理</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>用户管理</span>
+                </a>
+            </li>
+
+            <!--用户信息管理-->
+            <li ui-sref-active="active">
+                <a ui-sref="app.yonghu.list">
+                    <span>用户信息列表</span>
+                </a>
+            </li>
+            <!--/用户信息管理-->
+
+            <!--待添加信息-->
+            <li ui-sref-active="active">
+                <a ui-sref="app.yonghu.departList">
+                    <span>部门管理</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.yonghu.userGroupList">
+                    <span>用户组管理</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <!--/用户管理-->
+
+
+    <!--日志管理-->
+    <li>
+        <a href class="auto">
+            <!--右变为下-->
+            <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <!--/右变为下-->
+            <i class="glyphicon glyphicon-file"></i>
+            <span>日志管理</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>日志管理</span>
+                </a>
+            </li>
+            <!--待添加信息-->
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <!--/日志管理-->
+
+
+    <!--测试库管理-->
+    <li>
+        <a href class="auto">
+            <!--右变为下-->
+            <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <!--/右变为下-->
+            <i class="glyphicon  glyphicon-hdd"></i>
+            <span>测试库管理</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>测试库管理</span>
+                </a>
+            </li>
+
+
+
+            <!--待添加信息-->
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <!--/测试库管理-->
+
+
+    <!--签到管理-->
+    <li>
+        <a href class="auto">
+            <!--右变为下-->
+            <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <!--/右变为下-->
+            <i class="glyphicon glyphicon-calendar"></i>
+            <span>签到管理</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>签到管理</span>
+                </a>
+            </li>
+
+
+
+            <!--待添加信息-->
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="layout">
+                    <span>待添加信息</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <!--/签到管理-->
+
+    <div class="line dk hidden-folded"></div>
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+    </li>
+</ul>
+<!-- /admin  list -->

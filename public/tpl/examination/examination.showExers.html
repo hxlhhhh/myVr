@@ -1,0 +1,25 @@
+<div class="container-fluid" style="background-color: white;margin-top:100px">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div id="qst_{{ $index+1 }}" ng-repeat="x in examinationInfo" data-markup="0" data-did="0">
+              <h3 style="color: #006BB6">
+                第<span>{{$index+1}}</span>题:<span>{{ x.exercise.tittle }}</span>
+              </h3>
+              <div class="radio" ng-repeat="y in x.options"><!--radio的name属性不能都相同-->
+                 <span>{{ y.name}} &nbsp;&nbsp;&nbsp;</span>
+                 <label>
+                    <input type="radio" name="{{ x.exercise._id }}"  value="{{ y._id }}">{{ y.content }}
+                 </label>
+              </div>
+              <div>
+                <span>正确答案:</span><span>{{ x.rightOpt.name }}</span>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-md-4"><button class="btn btn-primary" ng-click="back();">返回</button></div>
+    </div>
+
+
+</div>

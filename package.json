@@ -1,0 +1,49 @@
+{
+  "name": "my5",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "angular-sweetalert": "^1.1.2",
+    "angular-ui-notification": "^0.3.6",
+    "asn1": "^0.2.4",
+    "body-parser": "latest",
+    "bower": "^1.8.8",
+    "chalk": "latest",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "del": "^5.0.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-hbs": "^2.1.2",
+    "express-session": "^1.16.2",
+    "glob": "latest",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-inject": "^5.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2",
+    "helmet": "^3.18.0",
+    "http-errors": "~1.6.3",
+    "lodash": "latest",
+    "lusca": "^1.6.1",
+    "method-override": "latest",
+    "mongoose": "^4.13.18",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.0",
+    "require-dir": "^1.2.0",
+    "run-sequence": "^2.2.1",
+    "serve-favicon": "^2.5.0",
+    "sweetalert": "^2.1.2",
+    "validator": "^11.1.0",
+    "winston": "~2.3.1"
+  },
+  "devDependencies": {
+    "passport-local": "^1.0.0"
+  }
+}

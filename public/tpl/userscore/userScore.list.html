@@ -1,0 +1,30 @@
+<div class="container-fluid"  style="margin-top: 30px;background-color: white">
+<div class="row" style="margin-left: 15px;"><span>学员成绩>>></span></div>
+   <div class="row" style="margin-top: 10px;">
+       <div class="col-md-10">
+       <form id="formSearch" class="form-horizontal">
+           <div class="form-group row" style="margin-top:15px;margin-left: -5px">
+               <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="hotelId">用户名</label>
+               <div class="col-sm-3" style="padding-left: 0px">
+                   <input class="form-control" ng-blur ="blurFun()" type="text" ng-model="userScore.examName">
+               </div>
+
+             </div>
+        </form>
+           <div class="btn-group" id="toolBar" style=" margin-left: 15px;">
+               <button type="button" class="btn btn-sm btn-primary">
+                   <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="btnDelete()">删除</span>
+               </button>
+               <button type="button" class="btn btn-sm btn-primary">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" ng-click="btnRefresh()">刷新</span>
+               </button>
+           </div>
+
+           <div style="margin-left: 15px; margin-right: 15px">
+               <table id="table" style=""></table>
+           </div>
+
+       </div>
+       <div class="col-md-1"></div>
+   </div>
+</div>

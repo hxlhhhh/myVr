@@ -1,0 +1,56 @@
+<div class="container" style="margin-top: 80px;text-align: -webkit-center;" >
+    <h2 class="col-md-10" ng-bind="titleText"></h2>
+    <div class="col-md-10" style="margin-top: 20px">
+        <form class="form-horizontal" role="examinationForm">
+            <fieldset ng-show="false">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-sm-3 col-form-label" for="user._id">ID</label>
+                    <div class="col-sm-9 col-md-9">
+                        <input type="text" class="form-control" ng-model="user._id" id="user._id"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset id="fieldGroup">
+                <div class="form-group row">
+                    <label for="user.userName" class="col-sm-3 col-md-3 col-form-label">用户名(*)</label>
+                    <div class="col-sm-9 col-md-9">
+                        <input type="text" ng-model="user.userName" class="form-control" id="user.userName" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="user.phone" class="col-md-3 col-form-label">手机(*)</label>
+                    <div class="col-sm-9">
+                        <input type="text" ng-model="user.phone" class="form-control" id="user.phone" name="user.phone"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="user.departId" class="col-md-3 col-form-label">部门</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" ng-model="selectDepart" ng-options="x.name for x in departs">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="user.departId" class="col-md-3 col-form-label">所属分组</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" ng-model="selectUserGroup" ng-options="x.name for x in userGroups">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button ng-show="isUpdate == 1" id="btnUpdate" type="button" ng-click="update()" class="btn btn-secondary">更新</button>
+                    <button ng-show="isUpdate == 0" id="btnAdd" type="button" ng-click="add()" class="btn btn-secondary">添加</button>
+                    <button id="btnReturn" type="button" ng-click="back()" class="btn btn-secondary">返回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

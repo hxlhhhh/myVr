@@ -1,0 +1,27 @@
+{
+  "name": "my5",
+  "description": "this is my bower.json",
+  "main": "mainfile",
+  "authors": [
+    "@luxh"
+  ],
+  "license": "free",
+  "keywords": [
+    "key",
+    "word"
+  ],
+  "homepage": "http://hongxulu.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.7.6",
+    "jquery": "~2.1.3",
+    "angular-ui-notification": "^0.3.6"
+  }
+}

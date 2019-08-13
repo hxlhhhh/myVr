@@ -1,0 +1,73 @@
+<div class="container-fluid"  style="margin-top: 30px;background-color: white">
+    <div class="row" style="margin-left: 15px;margin-top: 50px;"><span>部门管理>>></span></div>
+   <div class="row" style="margin-top: 10px;">
+       <div class="col-md-10">
+       <form id="formSearch" class="form-horizontal">
+           <div class="form-group row" style="margin-top:15px;margin-left: -5px;">
+               <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="hotelId">部门名称</label>
+               <div class="col-sm-3" style="padding-left: 0px">
+                   <input class="form-control" ng-blur ="blurFun()" type="text" ng-model="depart.name">
+               </div>
+               <label class="col-sm-1" for="langId" style="margin-top: 5px;padding-right: 0px" >部门编号</label>
+               <div class="col-sm-3" style="padding-left: 0px">
+                   <input class="form-control" ng-blur ="blurFun()" ng-model="depart.num" type="text" >
+               </div>
+             </div>
+        </form>
+           <div class="btn-group" id="toolBar" style=" margin-left: 15px;">
+               <button type="button" class="btn btn-sm btn-primary">
+                   <span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="btnAdd()">新增</span>
+               </button>
+               <button type="button" class="btn btn-sm btn-primary">
+                   <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="btnDelete()">删除</span>
+               </button>
+               <button type="button" class="btn btn-sm btn-primary">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true" ng-click="btnRefresh()">刷新</span>
+               </button>
+           </div>
+
+           <div style="margin-left: 15px; margin-right: 15px">
+               <table id="table" style=""></table>
+           </div>
+
+       </div>
+       <div class="modal fade col-md-8 offset-md-1" id="departModal" tabindex="-1" role="dialog">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                       <h4 id="edit_modal_title" class="modal-title font_normal" ng-bind="titleText">添加部门</h4>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                   aria-hidden="true">&times;</span></button>
+                       </div>
+                       <div class="modal-body">
+                           <form id="usCategoryForm" >
+                               <div class="form-group row" ng-hide="true">
+                                   <label class="col-sm-3 col-md-3 col-form-label" for="mDepart.id">id:</label>
+                                   <div class="col-md-6">
+                                       <input type="text" class="form-control" ng-model="mDepart.id" id="amountAdd" name="mDepart.id" title="">
+                                   </div>
+                               </div>
+                               <div class="form-group row">
+                                   <label class="col-sm-3 col-md-3 col-form-label" for="mDepart.name">部门名称:</label>
+                                   <div class="col-md-6">
+                                       <input type="text" class="form-control" ng-model="mDepart.name" id="amountAdd" name="mDepart.name" title="">
+                                   </div>
+                               </div>
+                               <div class="form-group row">
+                                   <label class="col-sm-3 col-md-3 col-form-label" for="mDepart.num">部门编号</label>
+                                   <div class="col-md-6">
+                                       <input ng-model="mDepart.num" id ="mDepart.num" name="mDepart.numc" class="form-control" />
+                                   </div>
+                               </div>
+                           </form>
+                       </div>
+                           <div class="modal-footer">
+                               <button type="button" ng-show="isAdd == '1'" class="btn btn-primary" ng-click="modelAdd();">添加</button>
+                               <button type="button" ng-show="isAdd == '0'" class="btn btn-primary" ng-click="modelUpdate();">更新</button>
+                               <button type="button" class="btn  btn-primary" data-dismiss="modal">关闭</button>
+                           </div>
+                   </div>
+               </div>
+           </div>
+   </div>
+</div>

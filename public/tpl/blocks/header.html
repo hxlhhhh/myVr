@@ -1,0 +1,40 @@
+      <!-- navbar header -->
+      <div class="navbar-header {{app.settings.navbarHeaderColor}}">
+        <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse" style="margin-left: 30px;">
+        </button>
+        <button class="pull-right visible-xs" ui-toggle-class="off-screen" style="margin-left: 30px;" data-target=".app-aside" ui-scroll="app">
+        </button>
+        <!-- brand -->
+        <a href="#/" class="navbar-brand text-lt">
+          <!--<i class="fa fa-btc"></i>
+          <img src="/img/logo.png" alt="." class="hide">
+           <span class="hidden-folded m-l-xs">{{app.name}}</span> -->
+          <span class="hidden-folded m-l-xs">VrSystem</span>
+        </a>
+        <!-- / brand -->
+      </div>
+      <div style="margin-left: 30px;float: right;margin-right: 50px;" >
+      <!-- 头像 -->
+          <span>欢迎您 </span><span ng-bind="vm.authentication.userName" class="ng-binding"></span>
+          <span class="thumb-lg w-auto-folded avatar m-t-sm" style="width:40px;">
+             <a href="#/"><img src="/img/a0.jpg" class="img-full" alt="..." style="width:40px;height: 40px;"></a>
+          </span>
+          <span ng-click="signOut();" style="cursor: pointer">退出</span>
+      </div>
+      <!-- / navbar header -->
+      <!-- navbar collapse -->
+        <!-- buttons -->
+
+        <!-- / buttons -->
+
+        <!-- link and dropdown -->
+
+        <!-- / link and dropdown -->
+
+        <!-- search form -->
+        <!-- / search form -->
+
+        <!-- nabar right -->
+        <!-- / navbar right -->
+
+      <!-- / navbar collapse -->

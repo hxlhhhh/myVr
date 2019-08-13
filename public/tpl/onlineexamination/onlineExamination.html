@@ -1,0 +1,58 @@
+<div class="container " style="background-color: white;">
+  <h2>考试名称:<span>{{ examination.name }}</span></h2>
+  <div style="width: 980px;">
+      <div style="width: 260px;position:fixed;">
+        <h4 style="background-color: #4DA6FF;line-height: 50px;text-align: center" >选择题</h4>
+        <ul style="padding:0px;width: 250px;" id=""  >
+            <li id="indexQst_{{ $index+1 }}"  ng-click="showQsn($index+1);"
+            style="
+                border-top: 1px solid #ccc;cursor: pointer;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                vertical-align: middle;
+                text-align: center;
+                float: left;
+                border-right: 1px solid #ccc;
+                border-left: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+                padding: 0px;
+                margin: 0px;
+                list-style: none;
+                display: inline-block;
+                font-size: 12px;
+            " ng-repeat="x in examinationInfo">{{ $index+1 }}</li>
+        </ul>
+        <div id="djs" style="width: 261px;height:0 auto;padding: 3px;margin-top:150px">
+            <fieldset style="font-size:20px;width:222px;font-weight: bolder;
+            text-align: center;border: 1px solid #4da6ff;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 12px">
+                <legend>交卷倒计时</legend>
+                <span ng-bind="countDown" style="color:green;"></span>
+            </fieldset>
+         </div>
+      </div>
+      <div style="width: 600px;margin-left: 300px">
+        <div >
+            <form name="examinationForm" >
+                <div class="shitiTable" id="qst_{{ $index+1 }}" ng-repeat="x in examinationInfo" data-markup="0" data-did="0">
+                  <h3 style="color: #006BB6">
+                    第<span>{{$index+1}}</span>题:<span>{{ x.exercise.tittle }}</span>
+                    <input type="button" value="标记" ng-click="markup( $index+1 );" style="background-color: #FF9326;border: none;width:100px;height:40px"/>
+                  </h3>
+                  <div class="radio" ng-repeat="y in x.options"><!--radio的name属性不能都相同-->
+                     <span>{{ y.name}} &nbsp;&nbsp;&nbsp;</span>
+                     <label>
+                        <input type="radio" ng-click="chooseRadio($parent.$index+1);"  name="{{ x.exercise._id }}"  value="{{ y._id }}" ng-model="conf[$parent.$index]">{{ y.content }}
+                     </label>
+                  </div>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-danger" ng-click="submitExam()" value="提交试卷" />
+                </div>
+              </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
