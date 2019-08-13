@@ -587,7 +587,21 @@ angular.module('app')
                       isUpdate:1
                   }
               })
-
+              .state('app.yonghu.noticeList',{
+                  url: '/noticeList',
+                  templateUrl: '/tpl/notice/notice.list.html',
+                  controller:'noticeCtrl',
+                  resolve: {
+                      deps: ['$ocLazyLoad',
+                          function( $ocLazyLoad ){
+                              return $ocLazyLoad.load([
+                                  '/js/app/notice/notice.list.js',
+                                  '/js/controllers/notice/notice.js',
+                                  '/js/services/notice/notice.client.service.js',
+                              ]);
+                          }]
+                  }
+              })
 
 
 

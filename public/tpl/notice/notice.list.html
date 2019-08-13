@@ -1,0 +1,99 @@
+<div class="container-fluid"  style="margin-top: 30px;background-color: white">
+ <div class="row" style="margin-left: 15px;"><span>公告管理>>></span></div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-10">
+            <form id="formSearch" class="form-horizontal">
+                <div class="form-group row" style="margin-top:15px">
+                    <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="">公告名称</label>
+                    <div class="col-sm-3" style="padding-left: 0px">
+                        <input class="form-control" ng-blur ="blurFun()" type="text" ng-model="notice.name">
+                    </div>
+
+                </div>
+            </form>
+            <div class="btn-group" id="toolBar" style="margin-left: 15px;">
+                <!-- <button  type="button" class="btn btn-secondary">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="btnReset()">重置</span>
+                </button> -->
+                <button type="button" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="btnAdd()">新增</span>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="btnDelete()">删除</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true" ng-click="btnRefresh()">刷新</span>
+                </button>
+            </div>
+
+            <div id="aaaaa"  style="margin-left: 15px; margin-right: 15px" class="table table-striped">
+                <table id="noticeTable" class="table table-striped"></table>
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <!-- 更新/添加弹窗 -->
+    <div class="modal fade col-md-8 offset-md-1" id="TheNoticeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="edit_modal_title" class="modal-title font_normal" ng-bind="tittleText">添加公告</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form id="TheNoticeForm" >
+                        <div class="form-group row" ng-hide="true">
+                            <label class="col-sm-3 col-md-3 col-form-label" for="TheNotice.id">id:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="TheNotice.id" id="TheNotice.id" name="TheNotice.id" title="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 col-form-label" for="TheNotice.name">公告名:</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="TheNotice.name" id="TheNotice.name" name="TheNotice.name" title="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 col-form-label" for="TheNotice.content">公告详情</label>
+                            <div class="col-md-6">
+                                <textarea ng-model="TheNotice.content" id ="TheNotice.content" name="TheNotice.content" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-show="isAdd == '1'" class="btn btn-primary" ng-click="modelAdd();">添加</button>
+                    <button type="button" ng-show="isAdd == '0'" class="btn btn-primary" ng-click="modelUpdate();">更新</button>
+                    <button type="button" class="btn  btn-primary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade col-md-8 offset-md-1" id="showModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title font_normal">公告详情</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title font_normal">{{showNoticeObj.name}}</h5>
+                    <div>
+                        <span>{{ showNoticeObj.content }}</span>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin: auto">
+                    <button type="button" class="btn  btn-primary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
