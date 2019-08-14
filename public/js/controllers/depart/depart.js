@@ -31,12 +31,8 @@ app.controller('departCtrl',
     };
     $scope.modelUpdate = function(){
         var obj = $scope.mDepart;
-        console.log(obj);
         var promise = departService.updateDepart(obj["_id"],obj);
         promise.then(function(msg){
-            console.log("aaaaaa");
-            console.log(msg);
-            console.log("aaaaaa");
             if(msg['code'] == '0x0000'){
                 myVr_alert("更新成功",function(){
                     $("#departModal").modal('hide');

@@ -48,13 +48,30 @@ exports.getByPage = function (req, res) {
     delete reqParam.offset;
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
+
+    var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = "_id";
+    }
+    delete reqParam.sort;
+    var order = reqParam['order'];
+    delete reqParam.order;
+    let orderMode = 1;//默认升序
+    if(order == "asc"){
+        orderMode = 1;
+    }else{
+        orderMode = -1;
+    }
+    var o ={};
+    o[sort] = orderMode;
+
     for (prop in reqParam) {
         var value = reqParam[prop];
         if( value != null && value.trim() != '' ){
             queryParam[prop] = new RegExp(value) ;
         }
     }
-    Depart.find(queryParam,{}).skip(offset).limit(limit).exec(function(err, depart){
+    Depart.find(queryParam,{}).skip(offset).limit(limit).sort(o).exec(function(err, depart){
         if (err) {
             return res.status(422).json({
                 code:"0x0001",

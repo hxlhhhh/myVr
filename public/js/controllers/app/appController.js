@@ -19,11 +19,9 @@ app.controller('appController',
             //左边导航栏
             let menuPromise = navService.getMenusByUserGroupId(userGroupId);
             menuPromise.then(function(msg){
-                console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
                 if(msg['code'] == '0x0000'){
                     vm.menus = msg['data']['menus'];
                 }
-                console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
             })
         }]
 );

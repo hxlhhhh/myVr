@@ -173,7 +173,6 @@ var UserGroupTableList = function($scope,$compile,params) {
             });
             var func = $.inArray(eType, ['check', 'check-all']) > -1 ? 'union' : 'difference';
             table.selectIds = _[func](table.selectIds, ids);
-            console.log(table.selectIds);
         });
     }
     return table;

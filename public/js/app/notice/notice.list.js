@@ -9,14 +9,13 @@ var NoticeTableList = function($scope,$compile,params) {
     table.init = function () {
         $("#noticeTable").bootstrapTable('destroy');
         $('#noticeTable').bootstrapTable({
-
             url: '/api/notice/getByPage',        //请求后台的URL(*)
             method: 'get',                                      //请求方式(*)
             toolbar:'toolBar',
             striped: true,                                      //是否显示行间隔色
             cache: false,                                       //是否使用缓存,默认为true,所以一般情况下需要设置一下这个属性(*)
             pagination: true,                                   //是否显示分页(*)
-            sortable: false,                                    //是否启用排序
+            sortable: true,                                    //是否启用排序
             sortOrder: "asc",                                  //排序方式
             queryParams: that.queryParam,                    //传递参数(*)
             responseHandler: responseHandler2,            //对返回结果进行格式转换,符合Bootstrap Table需求
@@ -44,13 +43,15 @@ var NoticeTableList = function($scope,$compile,params) {
                 },
                 {
                     field: 'name',
-                    title: '公告',
+                    title: '公告名称',
                     align: 'center',
-                    width: '400px'
+                    width: '400px',
+                    sortable: true,
                 },{
                     field: 'createDate',
                     title: '创建时间',
                     align: 'center',
+                    sortable: true,
                 },{
                     field: 'owner',
                     title: '创建人',
@@ -97,9 +98,6 @@ var NoticeTableList = function($scope,$compile,params) {
         function responseHandler2(msg){
             var result ={};
             var code = msg['code'];
-            console.log("msgmsgmsg");
-            console.log(msg);
-            console.log("msgmsgmsg");
             if(code == "0x0000"){
                 var data = msg['data']
                 result['total'] = data['total'];
@@ -114,9 +112,6 @@ var NoticeTableList = function($scope,$compile,params) {
     }
 
     table.queryParam = function(reqParam){
-        console.log("reqparmreqparam");
-        console.log(reqParam);
-        console.log("reqparmreqparam");
         var inputParams = reqParam;
         if (inputParams == null) {
             inputParams = that.params;
@@ -124,6 +119,8 @@ var NoticeTableList = function($scope,$compile,params) {
         var resParams = {
             offset: inputParams.offset,     //页码
             limit: inputParams.limit,       //页面大小
+            sort: inputParams.sort, //排序字段
+            order: inputParams.order //排序方式
         };
         resParams['name'] = params['name'];
         return resParams;
@@ -132,9 +129,6 @@ var NoticeTableList = function($scope,$compile,params) {
     table.refresh = function(selectOpt){
         var $table = $("#noticeTable")
         if(selectOpt != "" && selectOpt != null){
-            console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
-            console.log(tableData['rows'].length)
-            console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
             if(tableData['rows'].length <= 1 || selectOpt == tableData['rows'].length){
                 //判断当前是第几页
                 var pageNumber = $table.bootstrapTable('getOptions').pageNumber;

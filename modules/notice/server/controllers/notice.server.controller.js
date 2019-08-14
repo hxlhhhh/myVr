@@ -66,20 +66,35 @@ exports.save = function (req, res) {
 //按页查询
 exports.getByPage = function (req, res) {
     var reqParam = req.query;
-
     delete reqParam._;
     var queryParam = {};
     var offset = parseInt(reqParam['offset']);
     delete reqParam.offset;
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
+    var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = "_id";
+    }
+    delete reqParam.sort;
+    var order = reqParam['order'];
+    delete reqParam.order;
+    let orderMode = 1;//默认升序
+    if(order == "asc"){
+        orderMode = 1;
+    }else{
+        orderMode = -1;
+    }
+    var o ={};
+    o[sort] = orderMode;
+
     for (prop in reqParam) {
         var value = reqParam[prop];
         if( value != null && value.trim() != '' ){
             queryParam[prop] = new RegExp(value) ;
         }
     }
-    Notice.find(queryParam,{}).populate('owner').skip(offset).limit(limit).exec(function(err, notices){
+    Notice.find(queryParam,{}).sort(o).populate('owner').skip(offset).limit(limit).exec(function(err, notices){
         if (err) {
             return res.status(422).send({
                 code:'0x0001',
@@ -88,7 +103,6 @@ exports.getByPage = function (req, res) {
             });
         } else {
             var total = 0;
-
             Notice.find(queryParam,{}).exec(function(err,countNotices){
 
                 //判断为空
@@ -106,7 +120,6 @@ exports.getByPage = function (req, res) {
                 }
                 res.status(200).json(msg);
             });
-
         }
     });
 };

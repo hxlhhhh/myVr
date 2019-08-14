@@ -16,7 +16,7 @@ var PaperTableList = function($scope,$compile,params) {
             striped: true,                                      //是否显示行间隔色
             cache: false,                                       //是否使用缓存,默认为true,所以一般情况下需要设置一下这个属性(*)
             pagination: true,                                   //是否显示分页(*)
-            sortable: false,                                    //是否启用排序
+            sortable: true,                                    //是否启用排序
             sortOrder: "asc",                                   //排序方式
             queryParams: that.queryParam,                    //传递参数(*)
             responseHandler: responseHandler2,            //对返回结果进行格式转换,符合Bootstrap Table需求
@@ -46,7 +46,8 @@ var PaperTableList = function($scope,$compile,params) {
                     field: 'name',
                     title: '试题名称',
                     align: 'center',
-                    width:'300px'
+                    width:'300px',
+                    sortable: true
                 },{
                     field: 'sumScore',
                     title: '总分值',
@@ -55,6 +56,7 @@ var PaperTableList = function($scope,$compile,params) {
                     field: 'creatDate',
                     title: '创建时间',
                     align: 'center',
+                    sortable: true
                 },{
                     field: 'userId',
                     title: '创建人',
@@ -123,6 +125,8 @@ var PaperTableList = function($scope,$compile,params) {
         var resParams = {
             offset: inputParams.offset,     //页码
             limit: inputParams.limit,       //页面大小
+            sort: inputParams.sort, //排序字段
+            order: inputParams.order //排序方式
         };
         resParams['tittle'] = params['tittle'];
         return resParams;

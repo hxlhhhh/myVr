@@ -21,6 +21,9 @@ exports.getByPage = function (req, res) {
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
     var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = "_id";
+    }
     delete reqParam.sort;
     var order = reqParam['order'];
     delete reqParam.order;
