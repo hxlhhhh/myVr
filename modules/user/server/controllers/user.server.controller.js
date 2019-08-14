@@ -152,13 +152,31 @@ exports.getByPage = function (req, res) {
     delete reqParam.offset;
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
+
+    var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = "_id";
+    }
+    delete reqParam.sort;
+    var order = reqParam['order'];
+    delete reqParam.order;
+    let orderMode = 1;//默认升序
+    if(order == "asc"){
+        orderMode = 1;
+    }else{
+        orderMode = -1;
+    }
+    var o ={};
+    o[sort] = orderMode;
+
+
     for (prop in reqParam) {
         var value = reqParam[prop];
         if( value != null && value.trim() != '' ){
             queryParam[prop] = new RegExp(value) ;
         }
     }
-    User.find(queryParam,{}).populate('departId userGroupId').skip(offset).limit(limit).exec(function(err, users){
+    User.find(queryParam,{}).sort(o).populate('departId userGroupId').skip(offset).limit(limit).exec(function(err, users){
         if (err) {
             return res.status(422).json({
                 code:'0x0001',

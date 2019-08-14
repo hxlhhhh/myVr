@@ -15,7 +15,7 @@ var departTableList = function($scope,$compile,params) {
             striped: true,                                      //是否显示行间隔色
             cache: false,                                       //是否使用缓存,默认为true,所以一般情况下需要设置一下这个属性(*)
             pagination: true,                                   //是否显示分页(*)
-            sortable: false,                                    //是否启用排序
+            sortable: true,                                    //是否启用排序
             sortOrder: "asc",                                   //排序方式
             queryParams: that.queryParam,                    //传递参数(*)
             responseHandler: responseHandler2,            //对返回结果进行格式转换,符合Bootstrap Table需求
@@ -45,13 +45,16 @@ var departTableList = function($scope,$compile,params) {
                     field: 'name',
                     title: '部门名称',
                     align: 'center',
+                     sortable: true,
                 }, {
                     field: 'num',
                     title: '部门编号',
                     align: 'center',
+                    sortable: true,
                 },{
                     field:"_id",
                     title:'操作',
+                    align: 'center',
                     formatter: function(value,row,index){
                         var rtn="<div id='option_"+row._id+"'></div>";//在格式化操作栏的过程中添加一个id唯一的空div，供后续编译使用
                         //event可依据当前记录创建不同的元素内容
@@ -100,6 +103,8 @@ var departTableList = function($scope,$compile,params) {
         var resParams = {
             offset: inputParams.offset,     //页码
             limit: inputParams.limit,       //页面大小
+            sort: inputParams.sort, //排序字段
+            order: inputParams.order //排序方式
         };
         resParams['name'] = params['name'];
         resParams['num'] = params['num'];

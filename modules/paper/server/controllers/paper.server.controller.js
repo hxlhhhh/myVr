@@ -3,13 +3,9 @@ var mongoose = require('mongoose'),
     PaperExercise = mongoose.model('PaperExercise');
 //添加一个试卷
 exports.save = function (req, res) {
-    console.log("试卷及习题");
     var body = req.body;
     var paperParam = body['paper'];
     var exercises = body['exercises'];
-    console.log(paperParam);
-    console.log(exercises);
-    console.log("试卷及习题");
     var paramObj = new Paper(paperParam);
     //1 保存试卷
     paramObj.save(function (err,paper) {
@@ -93,13 +89,29 @@ exports.getByPage = function (req, res) {
     delete reqParam.offset;
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
+    var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = '_id';
+    }
+    delete reqParam.sort;
+    var order = reqParam['order'];
+    delete reqParam.order;
+    let orderMode = 1;//默认升序
+    if(order == "asc"){
+        orderMode = 1;
+    }else{
+        orderMode = -1;
+    }
+    var o ={};
+    o[sort] = orderMode;
+
     for (prop in reqParam) {
         var value = reqParam[prop];
         if( value != null && value.trim() != '' ){
             queryParam[prop] = new RegExp(value) ;
         }
     }
-    Paper.find(queryParam,{}).populate('userId').skip(offset).limit(limit).exec(function(err, papers){
+    Paper.find(queryParam,{}).populate('userId').sort(o).skip(offset).limit(limit).exec(function(err, papers){
         if (err) {
             return res.status(422).json({
                 code:"0x0001",
@@ -133,7 +145,6 @@ exports.getByPage = function (req, res) {
 exports.getPaperById = function (req, res) {
     var paperId = req.query.paperId;
     Paper.findOne({_id:paperId}, function (err, paper) {
-        console.log(paper);
         if (err) {
             return res.status(422).json({code:'0x0001',message:err,data:null});
         }
@@ -173,7 +184,6 @@ exports.deleteById = function (req, res) {
 //获取所有试卷
 exports.getAll = function (req, res) {
     Paper.find({}, function (err, paper) {
-        console.log(paper);
         if (err) {
             return res.status(422).json({code:'0x0001',message:err,data:null});
         }
