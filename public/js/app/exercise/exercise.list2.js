@@ -95,7 +95,6 @@ var ExerciseForExamTableList = function($scope,params) {
             return result;
         };
     }
-
     table.queryParam = function(reqParam){
         var inputParams = reqParam;
         if (inputParams == null) {

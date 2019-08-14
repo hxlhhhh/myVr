@@ -22,7 +22,6 @@ exports.getByExaminationId = function(req,res){
                 for (let i = 0; i < data.length; i++) {
                     var obj = data[i];
                     if(i == 0){
-                        console.log(obj);
                     }
                     paperIds.push(obj['paperId']);
                 }
@@ -94,7 +93,6 @@ function getPaperByExaminationId(examinationId){
                 for (let i = 0; i < data.length; i++) {
                     var obj = data[i];
                     if (i == 0) {
-                        console.log(obj);
                     }
                     paperIds.push(obj['paperId']);
                 }
@@ -142,7 +140,6 @@ function getOptionsByExercises(data,res){
             }
             for (let i = 0; i < exercisesIds.length; i++) {
                 var exercisesId = exercisesIds[i];
-                console.log(exercisesId);
                 var obj = {
                     "exercise":exerciseMap[exercisesId],
                     "options":exerciseOpt[exercisesId],
@@ -242,13 +239,36 @@ exports.getByPage = function (req, res) {
     delete reqParam.offset;
     var limit = parseInt(reqParam['limit']);
     delete reqParam.limit;
+    var sort = reqParam['sort'];
+    if(sort == undefined){
+        sort = "_id";
+    }
+    delete reqParam.sort;
+    var order = reqParam['order'];
+    delete reqParam.order;
+    let orderMode = 1;//默认升序
+    if(order == "asc"){
+        orderMode = 1;
+    }else{
+        orderMode = -1;
+    }
+    var o ={};
+    o[sort] = orderMode;
+    let categoryId = reqParam['categoryId'];
+    //处理管理id
+    if(categoryId != undefined){
+        queryParam['categoryId'] = reqParam['categoryId'];
+        delete reqParam.categoryId;
+    }else{
+
+    }
     for (prop in reqParam) {
         var value = reqParam[prop];
-        if( value != null && value.trim() != '' ){
+        if( value != null  && value.trim() != '' ){
             queryParam[prop] = new RegExp(value) ;
         }
     }
-    Exercise.find(queryParam,{}).populate('categoryId').skip(offset).limit(limit).exec(function(err, exercises){
+    Exercise.find(queryParam,{}).sort(o).populate('categoryId').skip(offset).limit(limit).exec(function(err, exercises){
         if (err) {
             return res.status(422).json({
                 code:"0x0001",
@@ -349,7 +369,6 @@ exports.getExerciseById = function (req, res) {
             }else{
                 result['options'] = options
             }
-            console.log(result);
             return res.status(200).json({
                 code:'0x0000',
                 message:'查询成功',
@@ -424,7 +443,6 @@ exports.addExercise = function (req, res) {
             obj['exerciseId'] = data['_id'];
         }
         ExerciseOption.insertMany(options).then(result =>{
-            console.log(result);
             return res.status(200).json({
                 code: '0x0000',
                 message: '添加成功',
@@ -446,9 +464,6 @@ exports.updateExercise = function(req,res){
     var param = req.body;
     var options = param['options'];
     delete param.options;
-    console.log("parampamra");
-    console.log(param);
-    console.log("parampamra");
     Exercise.findOne({_id: exerciseId}, function (err, exercise) {
         if (err) {
             return res.send(err);
@@ -472,7 +487,6 @@ exports.updateExercise = function(req,res){
                 }
                 //添加新选项
                 ExerciseOption.insertMany(options).then(result =>{
-                    console.log(result);
                     return res.status(200).json({
                         code: '0x0000',
                         message: '更新成功',
