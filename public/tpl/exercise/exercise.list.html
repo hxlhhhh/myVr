@@ -4,12 +4,18 @@
        <div class="col-md-10">
        <form id="formSearch" class="form-horizontal">
            <div class="form-group row" style="margin-top:15px;margin-left: -5px">
-               <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="hotelId">习题名称</label>
+               <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="exercise.tittle">习题名称</label>
                <div class="col-sm-3" style="padding-left: 0px">
-                   <input class="form-control" ng-blur ="blurFun()" type="text" ng-model="exercise.tittle">
+                   <input class="form-control" ng-blur ="blurFun()" type="text" ng-model="exercise.tittle" id="exercise.tittle" name="exercise.tittle">
                </div>
-
-             </div>
+               <label class="col-sm-1" style="margin-top: 5px;padding-right: 0px" for="exercise.category">习题分类</label>
+               <div class="col-sm-3" style="padding-left: 0px">
+                     <select class="form-control" ng-change ="changeValue()" type="text" ng-model="exercise.categoryId">
+                        <option  value="-1" selected>请选择</option >
+                        <option ng-repeat="category in categories" value="{{ category._id }}">{{ category.name }}</option >
+                     </select>
+                </div>
+           </div>
         </form>
            <div class="btn-group" id="toolBar" style=" margin-left: 15px;">
                <!-- <button  type="button" class="btn btn-secondary">

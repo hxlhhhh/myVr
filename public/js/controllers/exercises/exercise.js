@@ -1,9 +1,10 @@
 //试题列表controller
 app.controller('exerciseCtrl',
-    ['$scope','$compile','$state', '$stateParams','exerciseService',
-        function($scope,$compile,$state,$stateParams,exerciseService){
+    ['$scope','$compile','$state', '$stateParams','exerciseService','examinationCategoryService',
+        function($scope,$compile,$state,$stateParams,exerciseService,categoryService){
             $scope.exercise = {
-                "tittle":""
+                "tittle":"",
+                "categoryId":"-1"
             };
             $scope.isAdd = "1";
             $scope.tittleText = "添加分类";
@@ -15,13 +16,22 @@ app.controller('exerciseCtrl',
             $scope.blurFun=function(){
                 tableList.refresh();
             }
+            $scope.categories = [];
+            let categoryPromise = categoryService.getAllCategory();
+            categoryPromise.then(function(msg){
+                if(msg['code'] == '0x0000'){
+                    $scope.categories = msg['data'];
+                }
+            });
+            $scope.changeValue = function(){
+                tableList.refresh();
+            }
+
+
             //编辑
             $scope.edit = function(id){
                 var promise = exerciseService.getExerciseById(id);
                 promise.then(function(data){
-                    console.log("aaa");
-                    console.log(data);
-                    console.log("aaa");
                     if(data['code'] == '0x0000'){
                         $state.go('app.examination.exerciseUpdate',{data:data['data'],isUpdate:"1"}) ;
                     }else{
@@ -100,7 +110,6 @@ app.controller('exerciseUpdateCtrl',
             if(options.length > 0){
                 for (let i = 0; i < options.length; i++) {
                     if(options[i]['isRightAnswer'] == "0"){
-                        console.log("kkk");
                         $scope.conf[0] = i +"";
                         break;
                     }
@@ -151,7 +160,6 @@ app.controller('exerciseUpdateCtrl',
                 exercise['categoryId'] = $scope.category['_id'];
                 var promise = exerciseService.updateExercise(exercise['_id'],exercise);
                 promise.then(data =>{
-                  console.log(data);
                   if(data['code'] == '0x0000'){
                       myVr_alert('更新成功',function(){
                           $state.go("app.examination.exerciseList");
@@ -170,10 +178,7 @@ app.controller('exerciseUpdateCtrl',
                 exercise['categoryId'] = $scope.category['_id'];
                 var promise = exerciseService.addExercise(exercise);
                 promise.then(data =>{
-                  console.log(data);
                   if(data['code'] == '0x0000'){
-
-
                       myVr_alert('添加成功',function(){
                           $state.go("app.examination.exerciseList");
                       },function(){})
@@ -183,7 +188,6 @@ app.controller('exerciseUpdateCtrl',
             //添加一个选项
             $scope.addOption = function(){
                 var length = options.length;
-                console.log(length);
                 if(length >= alpArray.length){
                     console.log("每题最多"+length+"个选项");
                 }else{

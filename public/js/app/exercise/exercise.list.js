@@ -15,7 +15,7 @@ var ExerciseTableList = function($scope,$compile,params) {
             striped: true,                                      //是否显示行间隔色
             cache: false,                                       //是否使用缓存,默认为true,所以一般情况下需要设置一下这个属性(*)
             pagination: true,                                   //是否显示分页(*)
-            sortable: false,                                    //是否启用排序
+            sortable: true,                                    //是否启用排序
             sortOrder: "asc",                                   //排序方式
             queryParams: that.queryParam,                    //传递参数(*)
             responseHandler: responseHandler2,            //对返回结果进行格式转换,符合Bootstrap Table需求
@@ -70,6 +70,11 @@ var ExerciseTableList = function($scope,$compile,params) {
                         return value['name'];
                     }
                 },{
+                    field: 'createTime',
+                    title: '创建时间',
+                    align: 'center',
+                    sortable: true
+                },{
                     field:"_id",
                     title:'操作',
                     formatter: function(value,row,index){
@@ -114,9 +119,6 @@ var ExerciseTableList = function($scope,$compile,params) {
     }
 
     table.queryParam = function(reqParam){
-        console.log("reqparmreqparam");
-        console.log(reqParam);
-        console.log("reqparmreqparam");
         var inputParams = reqParam;
         if (inputParams == null) {
             inputParams = that.params;
@@ -124,8 +126,14 @@ var ExerciseTableList = function($scope,$compile,params) {
         var resParams = {
             offset: inputParams.offset,     //页码
             limit: inputParams.limit,       //页面大小
+            sort: inputParams.sort, //排序字段
+            order: inputParams.order //排序方式
         };
+        console.log(params)
         resParams['tittle'] = params['tittle'];
+        if(params['categoryId'] != "-1"){
+            resParams['categoryId'] = params['categoryId'];
+        }
         return resParams;
     }
 

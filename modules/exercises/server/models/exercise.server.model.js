@@ -19,7 +19,10 @@ var exerciseSchema = new Schema({
     categoryId:{
         type:Schema.Types.ObjectId,
         ref:'Category'
+    },
+    createTime:{
+        type: Date,
+        default: Date.now
     }
-
 });
 module.exports = mongoose.model('Exercise',exerciseSchema);

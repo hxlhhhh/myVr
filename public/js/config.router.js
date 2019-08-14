@@ -401,7 +401,8 @@ angular.module('app')
                               return $ocLazyLoad.load([
                                   '/js/controllers/exercises/exercise.js',
                                   '/js/services/exercise/exercise.client.service.js',
-                                  '/js/app/exercise/exercise.list.js'
+                                  '/js/services/examinationcategory/examinationCategory.client.service.js',
+                                  '/js/app/exercise/exercise.list.js',
                               ]);
                           }]
                   },
