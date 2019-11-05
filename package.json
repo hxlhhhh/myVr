@@ -33,7 +33,7 @@
     "lodash": "latest",
     "lusca": "^1.6.1",
     "method-override": "latest",
-    "mongoose": "^4.13.18",
+    "mongoose": "^5.7.5",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
     "require-dir": "^1.2.0",
