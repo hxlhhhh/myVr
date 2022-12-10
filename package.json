@@ -19,7 +19,7 @@
     "debug": "~2.6.9",
     "del": "^5.0.0",
     "ejs": "~2.6.1",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-hbs": "^2.1.2",
     "express-session": "^1.16.2",
     "glob": "latest",
